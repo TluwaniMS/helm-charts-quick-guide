@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "doctors-directory-chart.fullname" . }}
+  labels:
+    {{- include "doctors-directory-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "doctors-directory-chart.selectorLabels" . | nindent 4 }}
