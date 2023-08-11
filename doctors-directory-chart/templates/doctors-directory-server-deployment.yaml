@@ -25,7 +25,7 @@ spec:
             - name: DATABASE_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: doctors-directory-server-configmap
+                  name: {{ .Values.stage-prefix }}-doctors-directory-server-configmap
                   key: database_host
 
 ---

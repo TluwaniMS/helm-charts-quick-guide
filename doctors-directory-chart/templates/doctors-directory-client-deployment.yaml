@@ -25,7 +25,7 @@ spec:
             - name: REACT_APP_SERVER_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: doctors-directory-client-configmap
+                  name: {{ .Values.stage-prefix }}-doctors-directory-client-configmap
                   key: server_host
 
 ---
