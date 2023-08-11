@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: doctors-directory-client-configmap
+  namespace: doctors-directory
+data:
+  server_host: localhost

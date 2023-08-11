@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctors-directory-server-deployment
+  namespace: doctors-directory
+  labels:
+    app: doctors-directory-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doctors-directory-server
+  template:
+    metadata:
+      namespace: doctors-directory
+      labels:
+        app: doctors-directory-server
+    spec:
+      containers:
+        - name: doctors-directory-server
+          image: tm63/doctors-directory-gql-node-js-server:migration-script-int-commit
+          ports:
+            - containerPort: 5002
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: doctors-directory-server-configmap
+                  key: database_host
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctors-directory-server-service
+  namespace: doctors-directory
+spec:
+  selector:
+    app: doctors-directory-server
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002

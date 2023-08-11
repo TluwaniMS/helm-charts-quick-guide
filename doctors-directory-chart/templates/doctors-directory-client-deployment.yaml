@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctors-directory-client-deployment
+  namespace: doctors-directory
+  labels:
+    app: doctors-directory-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doctors-directory-client
+  template:
+    metadata:
+      namespace: doctors-directory
+      labels:
+        app: doctors-directory-client
+    spec:
+      containers:
+        - name: doctors-directory-client
+          image: tm63/doctors-directory-react-gql-client:host-env-update-commit
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_SERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: doctors-directory-client-configmap
+                  key: server_host
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctors-directory-client-service
+  namespace: doctors-directory
+spec:
+  selector:
+    app: doctors-directory-client
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
