@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb-deployment
+  name: {{ .Values.stage-prefix }}-mongodb-deployment
   namespace: {{ .Values.namespace }}-doctors-directory
   labels:
-    app: mongodb
+    app: {{ .Values.stage-prefix }}-mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb
+      app: {{ .Values.stage-prefix }}-mongodb
   template:
     metadata:
-      namespace: doctors-directory
+      namespace: {{ .Values.namespace }}-doctors-directory
       labels:
-        app: mongodb
+        app: {{ .Values.stage-prefix }}-mongodb
     spec:
       containers:
-        - name: mongo
+        - name: {{ .Values.stage-prefix }}-mongo
           image: mongo
           ports:
             - containerPort: 27017
@@ -26,11 +26,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-service
-  namespace: doctors-directory
+  name: {{ .Values.stage-prefix }}-mongodb-service
+  namespace: {{ .Values.namespace }}-doctors-directory
 spec:
   selector:
-    app: mongodb
+    app: {{ .Values.stage-prefix }}-mongodb
   ports:
     - protocol: TCP
       port: 27017

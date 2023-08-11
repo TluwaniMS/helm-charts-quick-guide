@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: doctors-directory-client-deployment
+  name: {{ .Values.stage-prefix }}-doctors-directory-client-deployment
   namespace: {{ .Values.namespace }}-doctors-directory
   labels:
-    app: doctors-directory-client
+    app: {{ .Values.stage-prefix }}-doctors-directory-client
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: doctors-directory-client
+      app: {{ .Values.stage-prefix }}-doctors-directory-client
   template:
     metadata:
       namespace: {{ .Values.namespace }}-doctors-directory
       labels:
-        app: doctors-directory-client
+        app: {{ .Values.stage-prefix }}-doctors-directory-client
     spec:
       containers:
-        - name: doctors-directory-client
+        - name: {{ .Values.stage-prefix }}-doctors-directory-client
           image: tm63/doctors-directory-react-gql-client:host-env-update-commit
           ports:
             - containerPort: 3000
@@ -32,11 +32,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: doctors-directory-client-service
+  name: {{ .Values.stage-prefix }}-doctors-directory-client-service
   namespace: {{ .Values.namespace }}-doctors-directory
 spec:
   selector:
-    app: doctors-directory-client
+    app: {{ .Values.stage-prefix }}-doctors-directory-client
   type: LoadBalancer
   ports:
     - protocol: TCP

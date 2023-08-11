@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: doctors-directory-client-configmap
+  name: {{ .Values.stage-prefix }}-doctors-directory-client-configmap
   namespace: {{ .Values.namespace }}-doctors-directory
 data:
   server_host: localhost

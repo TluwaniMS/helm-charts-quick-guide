@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: doctors-directory-server-deployment
+  name: {{ .Values.stage-prefix }}-doctors-directory-server-deployment
   namespace: {{ .Values.namespace }}-doctors-directory
   labels:
-    app: doctors-directory-server
+    app: {{ .Values.stage-prefix }}-doctors-directory-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: doctors-directory-server
+      app: {{ .Values.stage-prefix }}-doctors-directory-server
   template:
     metadata:
       namespace: {{ .Values.namespace }}-doctors-directory
       labels:
-        app: doctors-directory-server
+        app: {{ .Values.stage-prefix }}-doctors-directory-server
     spec:
       containers:
-        - name: doctors-directory-server
+        - name: {{ .Values.stage-prefix }}-doctors-directory-server
           image: tm63/doctors-directory-gql-node-js-server:migration-script-int-commit
           ports:
             - containerPort: 5002
@@ -32,11 +32,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: doctors-directory-server-service
+  name: {{ .Values.stage-prefix }}-doctors-directory-server-service
   namespace: {{ .Values.namespace }}-doctors-directory
 spec:
   selector:
-    app: doctors-directory-server
+    app: {{ .Values.stage-prefix }}-doctors-directory-server
   ports:
     - protocol: TCP
       port: 5002
