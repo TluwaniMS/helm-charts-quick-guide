@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.stage-prefix }}-doctors-directory-server-deployment
-  namespace: {{ .Values.namespace }}-doctors-directory
+  name: "{{ .Values.stage-prefix }}-doctors-directory-server-deployment-{{ .Release.Name }}"
+  namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
   labels:
-    app: {{ .Values.stage-prefix }}-doctors-directory-server
+    app: "{{ .Values.stage-prefix }}-doctors-directory-server-{{ .Release.Name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.stage-prefix }}-doctors-directory-server
+      app: "{{ .Values.stage-prefix }}-doctors-directory-server-{{ .Release.Name }}"
   template:
     metadata:
-      namespace: {{ .Values.namespace }}-doctors-directory
+      namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
       labels:
-        app: {{ .Values.stage-prefix }}-doctors-directory-server
+        app: "{{ .Values.stage-prefix }}-doctors-directory-server-{{ .Release.Name }}"
     spec:
       containers:
-        - name: {{ .Values.stage-prefix }}-doctors-directory-server
+        - name: "{{ .Values.stage-prefix }}-doctors-directory-server-{{ .Release.Name }}"
           image: tm63/doctors-directory-gql-node-js-server:migration-script-int-commit
           ports:
             - containerPort: 5002
@@ -25,18 +25,18 @@ spec:
             - name: DATABASE_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.stage-prefix }}-doctors-directory-server-configmap
+                  name: "{{ .Values.stage-prefix }}-doctors-directory-server-configmap-{{ .Release.Name }}"
                   key: database_host
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.stage-prefix }}-doctors-directory-server-service
-  namespace: {{ .Values.namespace }}-doctors-directory
+  name: "{{ .Values.stage-prefix }}-doctors-directory-server-service-{{ .Release.Name }}"
+  namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
 spec:
   selector:
-    app: {{ .Values.stage-prefix }}-doctors-directory-server
+    app: "{{ .Values.stage-prefix }}-doctors-directory-server-{{ .Release.Name }}"
   ports:
     - protocol: TCP
       port: 5002

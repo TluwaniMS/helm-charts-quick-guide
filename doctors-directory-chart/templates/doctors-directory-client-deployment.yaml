@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.stage-prefix }}-doctors-directory-client-deployment
-  namespace: {{ .Values.namespace }}-doctors-directory
+  name: "{{ .Values.stage-prefix }}-doctors-directory-client-deployment-{{ .Release.Name }}"
+  namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
   labels:
-    app: {{ .Values.stage-prefix }}-doctors-directory-client
+    app: "{{ .Values.stage-prefix }}-doctors-directory-client-{{ .Release.Name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.stage-prefix }}-doctors-directory-client
+      app: "{{ .Values.stage-prefix }}-doctors-directory-client-{{ .Release.Name }}"
   template:
     metadata:
-      namespace: {{ .Values.namespace }}-doctors-directory
+      namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
       labels:
-        app: {{ .Values.stage-prefix }}-doctors-directory-client
+        app: "{{ .Values.stage-prefix }}-doctors-directory-client-{{ .Release.Name }}"
     spec:
       containers:
-        - name: {{ .Values.stage-prefix }}-doctors-directory-client
+        - name: "{{ .Values.stage-prefix }}-doctors-directory-client-{{ .Release.Name }}"
           image: tm63/doctors-directory-react-gql-client:host-env-update-commit
           ports:
             - containerPort: 3000
@@ -25,18 +25,18 @@ spec:
             - name: REACT_APP_SERVER_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.stage-prefix }}-doctors-directory-client-configmap
+                  name: "{{ .Values.stage-prefix }}-doctors-directory-client-configmap-{{ .Release.Name }}"
                   key: server_host
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.stage-prefix }}-doctors-directory-client-service
-  namespace: {{ .Values.namespace }}-doctors-directory
+  name: "{{ .Values.stage-prefix }}-doctors-directory-client-service-{{ .Release.Name }}"
+  namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
 spec:
   selector:
-    app: {{ .Values.stage-prefix }}-doctors-directory-client
+    app: "{{ .Values.stage-prefix }}-doctors-directory-client-{{ .Release.Name }}"
   type: LoadBalancer
   ports:
     - protocol: TCP
