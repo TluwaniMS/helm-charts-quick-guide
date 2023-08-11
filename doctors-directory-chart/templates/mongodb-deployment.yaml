@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb-deployment
-  namespace: doctors-directory
+  namespace: {{ .Values.namespace }}-doctors-directory
   labels:
     app: mongodb
 spec:

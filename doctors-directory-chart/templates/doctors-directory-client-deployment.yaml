@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: doctors-directory-client-deployment
-  namespace: doctors-directory
+  namespace: {{ .Values.namespace }}-doctors-directory
   labels:
     app: doctors-directory-client
 spec:
@@ -12,7 +12,7 @@ spec:
       app: doctors-directory-client
   template:
     metadata:
-      namespace: doctors-directory
+      namespace: {{ .Values.namespace }}-doctors-directory
       labels:
         app: doctors-directory-client
     spec:
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: doctors-directory-client-service
-  namespace: doctors-directory
+  namespace: {{ .Values.namespace }}-doctors-directory
 spec:
   selector:
     app: doctors-directory-client
