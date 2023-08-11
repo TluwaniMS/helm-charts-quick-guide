@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Values.stage-prefix }}-doctors-directory-server-configmap-{{ .Release.Name }}"
-  namespace: "{{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}"
+  name: {{ .Values.stagePrefix }}-doctors-directory-server-configmap-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}-doctors-directory-{{ .Release.Name }}
 data:
   database_host: mongodb-service

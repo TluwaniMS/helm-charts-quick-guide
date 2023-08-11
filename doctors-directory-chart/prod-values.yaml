@@ -1,6 +1,6 @@
 namespace: 'prod-space'
 
-stage-prefix: 'prod'
+stagePrefix: 'prod'
 
 doctors-directory-client:
   deployment:

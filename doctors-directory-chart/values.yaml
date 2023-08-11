@@ -1,6 +1,6 @@
 namespace: 'default-space'
 
-stage-prefix: 'default'
+stagePrefix: 'default'
 
 doctors-directory-client:
   deployment:
