@@ -9,6 +9,7 @@ A `Chart` stands as a Helm package encompassing all the essential resource expla
 ## How to create a Chart:
 
 helm create <name_of_chart>
+
 `Generates a directory for charts, accompanied by the standard files and folders utilized within a chart.`
 
 ## Chart directory guide.
