@@ -1,5 +1,7 @@
 namespace: 'dev-space'
 
+stage-prefix: 'dev'
+
 doctors-directory-client:
   deployment:
   configmap:

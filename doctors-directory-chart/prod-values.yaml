@@ -1,5 +1,7 @@
 namespace: 'prod-space'
 
+stage-prefix: 'prod'
+
 doctors-directory-client:
   deployment:
   configmap:
