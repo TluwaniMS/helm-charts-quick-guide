@@ -1,1 +1,15 @@
 namespace: 'prod-space'
+
+doctors-directory-client:
+  deployment:
+  configmap:
+  service:
+
+doctors-directory-server:
+  deployment:
+  configmap:
+  service:
+
+doctors-directory-database:
+  deployment:
+  service:
