@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
         - name: {{ .Values.stagePrefix }}-doctors-directory-server-{{ .Release.Name }}
-          image: tm63/doctors-directory-gql-node-js-server:migration-script-int-commit
+          image: {{ .Values.doctorsDirectoryServer.deployment.repository }}/{{ .Values.doctorsDirectoryServer.deployment.image  }}:{{ .Values.doctorsDirectoryServer.deployment.tag  }}
           ports:
-            - containerPort: 5002
+            - containerPort: {{ .Values.doctorsDirectoryServer.deployment.containerPort }}
           env:
             - name: DATABASE_HOST
               valueFrom:

@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
         - name: {{ .Values.stagePrefix }}-mongo-{{ .Release.Name }}
-          image: mongo
+          image: {{ .Values.doctorsDirectoryDatabase.deployment.image  }}
           ports:
-            - containerPort: 27017
+            - containerPort: {{ .Values.doctorsDirectoryDatabase.deployment.containerPort }}
 
 ---
 apiVersion: v1

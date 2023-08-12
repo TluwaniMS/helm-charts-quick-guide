@@ -29,9 +29,7 @@ doctorsDirectoryServer:
 doctorsDirectoryDatabase:
   deployment:
     replicas: 1
-    repository:
     image: mongo
-    tag: latest
     containerPort: 27017
   service:
     protocol: TCP

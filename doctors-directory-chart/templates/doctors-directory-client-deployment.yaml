@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
         - name: {{ .Values.stagePrefix }}-doctors-directory-client-{{ .Release.Name }}
-          image: tm63/doctors-directory-react-gql-client:host-env-update-commit
+          image: {{ .Values.doctorsDirectoryClient.deployment.repository }}/{{ .Values.doctorsDirectoryClient.deployment.image  }}:{{ .Values.doctorsDirectoryClient.deployment.tag  }}
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.doctorsDirectoryClient.deployment.containerPort }}
           env:
             - name: REACT_APP_SERVER_HOST
               valueFrom:
