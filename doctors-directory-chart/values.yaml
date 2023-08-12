@@ -10,6 +10,7 @@ doctorsDirectoryClient:
     tag: host-env-update-commit
     containerPort: 3000
   service:
+    type: LoadBalancer
     protocol: TCP
     port: 3000
     targetPort: 3000

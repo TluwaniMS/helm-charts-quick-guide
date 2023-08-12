@@ -38,6 +38,6 @@ spec:
   selector:
     app: {{ .Values.stagePrefix }}-doctors-directory-server-{{ .Release.Name }}
   ports:
-    - protocol: TCP
-      port: 5002
-      targetPort: 5002
+    - protocol: {{ .Values.doctorsDirectoryServer.service.protocol }}
+      port: {{ .Values.doctorsDirectoryServer.service.port }}
+      targetPort: {{ .Values.doctorsDirectoryServer.service.targetPort }}

@@ -32,6 +32,6 @@ spec:
   selector:
     app: {{ .Values.stagePrefix }}-mongodb-{{ .Release.Name }}
   ports:
-    - protocol: TCP
-      port: 27017
-      targetPort: 27017
+    - protocol: {{ .Values.doctorsDirectoryDatabase.service.protocol }}
+      port: {{ .Values.doctorsDirectoryDatabase.service.port }}
+      targetPort: {{ .Values.doctorsDirectoryDatabase.service.targetPort }}

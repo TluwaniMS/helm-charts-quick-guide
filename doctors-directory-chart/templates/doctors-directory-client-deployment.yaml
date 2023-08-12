@@ -37,8 +37,8 @@ metadata:
 spec:
   selector:
     app: {{ .Values.stagePrefix }}-doctors-directory-client-{{ .Release.Name }}
-  type: LoadBalancer
+  type: {{ .Values.doctorsDirectoryClient.service.type }}
   ports:
-    - protocol: TCP
-      port: 3000
-      targetPort: 3000
+    - protocol: {{ .Values.doctorsDirectoryClient.service.protocol }}
+      port: {{ .Values.doctorsDirectoryClient.service.port }}
+      targetPort: {{ .Values.doctorsDirectoryClient.service.targetPort }}
