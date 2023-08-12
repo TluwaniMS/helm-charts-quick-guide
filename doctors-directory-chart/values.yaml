@@ -2,16 +2,38 @@ namespace: 'default-space'
 
 stagePrefix: 'default'
 
-doctors-directory-client:
+doctorsDirectoryClient:
   deployment:
-  configmap:
+    replicas: 1
+    repository: tm63
+    image: doctors-directory-react-gql-client
+    tag: host-env-update-commit
+    containerPort: 3000
   service:
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
 
-doctors-directory-server:
+doctorsDirectoryServer:
   deployment:
-  configmap:
+    replicas: 1
+    repository: tm63
+    image: doctors-directory-gql-node-js-server
+    tag: migration-script-int-commit
+    containerPort: 5002
   service:
+    protocol: TCP
+    port: 5002
+    targetPort: 5002
 
-doctors-directory-database:
+doctorsDirectoryDatabase:
   deployment:
+    replicas: 1
+    repository:
+    image: mongo
+    tag: latest
+    containerPort: 27017
   service:
+    protocol: TCP
+    port: 27017
+    targetPort: 27017
