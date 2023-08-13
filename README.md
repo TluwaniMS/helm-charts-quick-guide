@@ -55,6 +55,10 @@ The `charts/` directory may contain other charts (which we call subcharts).
 
 # Helm project practice commands
 
+`NB!`
+
+Please ensure that you have a running instance of minikube, before experimenting with the `helm commands`;
+lastly make sure that you're in the projects root directory.🙂
 * ### helm lint:
   
   Analyze a chart to identify potential issues.
