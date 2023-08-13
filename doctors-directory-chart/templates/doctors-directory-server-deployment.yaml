@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Values.stagePrefix }}-doctors-directory-server-{{ .Release.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.doctorsDirectoryServer.deployment.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.stagePrefix }}-doctors-directory-server-{{ .Release.Name }}
