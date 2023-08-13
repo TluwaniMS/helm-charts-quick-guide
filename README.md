@@ -1,5 +1,14 @@
 # Helm Charts Quick Guide
 
+# Software(s) required:
+
+* [Docker](https://docs.docker.com/get-docker/)
+* [minikube](https://minikube.sigs.k8s.io/docs/start/)
+* [Helm](https://helm.sh/docs/intro/install/)
+* [Kubectl](https://kubectl.docs.kubernetes.io/installation/kubectl/)
+
+
+
 # What is Helm?
 
 Helm stands as an open source package manager designed for Kubernetes, enabling the provisioning, sharing, and utilization of software developed for the Kubernetes environment.  What is a Chart?
